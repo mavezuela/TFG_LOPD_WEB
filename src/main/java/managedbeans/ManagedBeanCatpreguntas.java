@@ -24,7 +24,6 @@ public class ManagedBeanCatpreguntas implements Serializable{
     private double porcentaje;
     
 
-
     public ManagedBeanCatpreguntas() {
     }
 
