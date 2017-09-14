@@ -3,19 +3,114 @@
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-   
-    <managed-bean>
-        <managed-bean-name>ManagedBeanUsuario</managed-bean-name>
-        <managed-bean-class>managedbeans.ManagedBeanUsuario</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-    </managed-bean>
+
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>     
         <navigation-case>
-            <from-action>#{ManagedBeanUsuario.loginUsuario}</from-action>
-            <from-outcome>ok</from-outcome>
+            <from-action>#{managedBeanLoginUsuarios.loginUsuario}</from-action>
+            <from-outcome>Administrador</from-outcome>
             <to-view-id>/vistas/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{managedBeanLoginUsuarios.loginUsuario}</from-action>
+            <from-outcome>Operador</from-outcome>
+            <to-view-id>/vistas/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{managedBeanLoginUsuarios.loginUsuario}</from-action>
+            <from-outcome>Consultor</from-outcome>
+            <to-view-id>/vistas/home.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
-
+    <navigation-rule>
+        <from-view-id>/vistas/home.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanLoginUsuarios.logoutUsuario}</from-action>
+            <from-outcome>Salir</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/usuario.xhtml</from-view-id>
+        <navigation-case>
+            <from-action></from-action>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/vistas/addusuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/addusuario.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanUsuarios.add}</from-action>
+            <from-outcome>usuario</from-outcome>
+            <to-view-id>/vistas/usuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>managedBeanLoginUsuarios</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanLoginUsuarios</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanUsuarios</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanUsuarios</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanNivelAcceso</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanNivelAcceso</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanEntidad</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanEntidad</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanDepartamento</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanDepartamento</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanFicheros</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanFicheros</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanVersion</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanVersion</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanVersionFichero</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanVersionFichero</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanCatpreguntas</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanCatpreguntas</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanPreguntas</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanPreguntas</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanCatpregversion</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanCatpregversion</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>managedBeanPreguntasversion</managed-bean-name>
+        <managed-bean-class>managedbeans.ManagedBeanPreguntasversion</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>
