@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <h1>Listado de Departamentos</h1>
+                <br></br><br></br>
+                <h:form>
+                    <p:dataTable id="dep" var="dep" value="#{managedBeanDepartamento.findAll()}" widgetVar="depTable" 
+                                 emptyMessage="No hay departamentos con los criterios de busqueda" filteredValue="#{managedBeanDepartamento.filteredDep}"
+                                 paginator="false" rows="10">
+
+                        <p:column filterBy="#{dep.identidad.nombre}"  headerText="identidad" filterMatchMode="contains">
+                            <f:facet name="header">Entidades</f:facet>
+                            <h:outputText value="#{dep.identidad.nombre}" />
+                        </p:column>
+
+                        <p:column filterBy="#{dep.nombre}"  headerText="descripcion" filterMatchMode="contains">
+                            <f:facet name="header">Departamento</f:facet>
+                            <h:outputText value="#{dep.nombre}" />
+                        </p:column>                      
+                    </p:dataTable>
+                    <br></br><br></br>
+                    <h3>EXPORTAR</h3>
+                    <h:commandLink>
+                        <p:graphicImage url="../resources/xls.png" />
+                        <p:dataExporter type="xls" target="dep" fileName="departamento"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage url="../resources/pdf.png" />
+                        <p:dataExporter type="pdf" target="dep" fileName="departamento"/>
+                    </h:commandLink>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

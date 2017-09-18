@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Editar Mantenimiento Ficheros"/></h1>
+                        <h:panelGrid columns="2">
+                            <p:outputLabel value="Fichero:" />
+                            <p:outputLabel value="#{managedBeanVersionFichero.vf.ficheros.nombre}" style="font-weight: bold"/>
+                            <p:outputLabel value="Version:" />
+                            <p:outputLabel value="#{managedBeanVersionFichero.vf.version1.version}" style="font-weight: bold"/>
+                            <h:outputLabel value="Versionado:" for="nombre" />
+                            <h:inputText id="versionado" value="#{managedBeanVersionFichero.vf.version}" title="Versionado" required="true" requiredMessage="El campo Versionado es Obligatorio."/>
+                            <h:outputLabel value="Descripción:" for="descripcion" />
+                            <h:inputText id="descripcion" value="#{managedBeanVersionFichero.vf.descripcion}" title="descripcion" required="true" requiredMessage="El campo Descripción es Obligatorio."/>
+
+                            <h:commandButton value="Guardar" action="#{managedBeanVersionFichero.edit()}"></h:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

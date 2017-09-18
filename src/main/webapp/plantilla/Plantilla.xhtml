@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./../resources/css/default.css" rel="stylesheet" type="text/css"/>
         <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css"/>
-        <title>Adaptación LOP</title>
+        <title>Adaptación LOPD</title>
     </h:head>
 
     <h:body>
@@ -22,9 +22,16 @@
                     <p:column>
                         <p:submenu label="Administración">                    
                             <p:menuitem value="Gestión usuarios" url="../vistas/usuario.xhtml" />
-                            <p:menuitem value="Mantenimiento de tablas" url="#" />
                         </p:submenu>
                     </p:column>                            
+                    <p:column>
+                        <p:submenu label="Mantenimiento de Tablas">
+                            <p:menuitem value="Entidades" url="../vistas/entidades.xhtml" />
+                            <p:menuitem value="Departamentos" url="../vistas/departamento.xhtml" />
+                            <p:menuitem value="Ficheros" url="../vistas/ficheros.xhtml" />
+                            <p:menuitem value="Versiones" url="../vistas/versiones.xhtml" />
+                        </p:submenu>
+                    </p:column>
                     <p:column>
                         <p:submenu label="Planificación">                    
                             <p:menuitem value="Planificación de Proyectos" url="#" />
@@ -36,7 +43,7 @@
                 <p:submenu label="Gestor" icon="ui-icon-pencil">
                     <p:column>
                         <p:submenu label="Tratamiento">
-                            <p:menuitem value="Mantenimiento de Ficheros" url="#" />
+                            <p:menuitem value="Mantenimiento de Ficheros" url="../vistas/mantficheros.xhtml" />
                             <p:menuitem value="Recogida de datos" url="#" />
                         </p:submenu>
                     </p:column>                    
@@ -45,9 +52,9 @@
                 <p:submenu label="Consultor" icon="ui-icon-document">
                     <p:column>
                         <p:submenu label="Listados">
-                            <p:menuitem value="Listado General" url="#" />
-                            <p:menuitem value="Listado Departamento" url="#" />
-                            <p:menuitem value="Listado Ficheros" url="#" />
+                            <p:menuitem value="Listado General" url="../vistas/listficheros.xhtml" />
+                            <p:menuitem value="Listado Departamento" url="../vistas/listdepartamento.xhtml" />
+                            <p:menuitem value="Listado Ficheros" url="../vistas/listficheros.xhtml" />
                         </p:submenu>
                         <p:submenu label="Estadísticas">
                             <p:menuitem value="Estadística General" url="#" />

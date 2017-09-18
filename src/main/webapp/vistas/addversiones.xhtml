@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Añadir Versiones"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Id Versión:" for="idversion" />
+                            <h:inputText id="idversion" value="#{managedBeanVersion.v.idversion}" title="Id Versión" required="true" requiredMessage="El campo Id Versión es Obligatorio."/>
+                            <h:outputLabel value="Versión:" for="version" />
+                            <h:inputText id="version" value="#{managedBeanVersion.v.version}" title="Versión" required="true" requiredMessage="El campo Versión es Obligatorio."/>
+                            <h:commandButton value="Guardar" action="#{managedBeanVersion.add()}"></h:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

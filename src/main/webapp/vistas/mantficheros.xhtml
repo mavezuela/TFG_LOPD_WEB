@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable var="verfic" value="#{managedBeanVersionFichero.findAll()}" widgetVar="verficTable" 
+                                 emptyMessage="No hay ficheros con los criterios de busqueda" filteredValue="#{managedBeanVersionFichero.filteredVerFic}"
+                                 paginator="true" rows="10">
+
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Filtrar por todos los campos:" />
+                                <p:inputText id="globalFilter" onkeyup="PF('verficTable').filter()" style="width:150px" placeholder="Introduzca la clave"/>
+                            </p:outputPanel>
+                        </f:facet>
+
+                        <p:column filterBy="#{verfic.ficheros.nombre}"  headerText="fichero" filterMatchMode="contains">
+                            <f:facet name="header">Fichero</f:facet>
+                            <h:outputText value="#{verfic.ficheros.nombre}" />
+                        </p:column>
+
+                        <p:column filterBy="#{verfic.version1.version}"  headerText="version" filterMatchMode="contains">
+                            <f:facet name="header">Version</f:facet>
+                            <h:outputText value="#{verfic.version1.version}" />
+                        </p:column>
+
+                        <p:column filterBy="#{verfic.version}"  headerText="versionado" filterMatchMode="contains">
+                            <f:facet name="header">Versionado</f:facet>
+                            <h:outputText value="#{verfic.version}" />
+                        </p:column>
+
+                        <p:column filterBy="#{verfic.descripcion}"  headerText="apellido1" filterMatchMode="contains">
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{verfic.descripcion}" />
+                        </p:column>
+
+
+                        <p:column>
+                            <f:facet name="header">Opciones</f:facet>
+                            <h:commandLink value="Borrar" action="#{managedBeanVersionFichero.delete(verfic)}" onclick="return confirm('¿Quiere borrar el registro?')"></h:commandLink> |
+                            <h:commandLink value="Editar" action="#{managedBeanVersionFichero.edit(verfic)}" ></h:commandLink> |
+                            <h:commandLink value="Preparar" action="#{managedBeanCatpreguntas.preparar(verfic)}" ></h:commandLink>
+                        </p:column>
+                        
+                    </p:dataTable>
+                    <br /><br />
+                    <p:button outcome="add" value="Añadir"></p:button>                
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

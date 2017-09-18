@@ -13,24 +13,24 @@
             <ui:define name="content">
                 <f:view>
                     <h:form>
-                        <h1><h:outputText value="Añadir Usuario"/></h1>
+                        <h1><h:outputText value="Editar Usuario"/></h1>
                         <h:panelGrid columns="2">
                             <h:outputLabel value="Username:" for="username" />
-                            <h:inputText id="username" value="#{managedBeanUsuarios.u.username}" title="Username" required="true" requiredMessage="El campo Username es Obligatorio."/>
+                            <h:inputText id="username" value="#{managedBeanUsuarios.u.username}" title="Username" readonly="true" required="true" requiredMessage="The campo Username es Obligatorio."/>
                             <h:outputLabel value="Password:" for="password" />
-                            <h:inputText id="password" value="#{managedBeanUsuarios.u.password}" title="Password" required="true" requiredMessage="El campo Password es Obligatorio."/>
+                            <h:inputText id="password" value="#{managedBeanUsuarios.u.password}" title="Password" required="true" requiredMessage="El campo password es obligatorio."/>
                             <h:outputLabel value="Nombre:" for="nombre" />
-                            <h:inputText id="nombre" value="#{managedBeanUsuarios.u.nombre}" title="Nombre" required="true" requiredMessage="El campo Nombre es Obligatorio."/>
+                            <h:inputText id="nombre" value="#{managedBeanUsuarios.u.nombre}" title="Nombre" required="true" requiredMessage="El campo Nombre es obligatorio."/>
                             <h:outputLabel value="Apellido1:" for="apellido1" />
-                            <h:inputText id="apellido1" value="#{managedBeanUsuarios.u.apellido1}" title="Apellido1" required="true" requiredMessage="El campo Apellido1 es Obligatorio."/>
+                            <h:inputText id="apellido1" value="#{managedBeanUsuarios.u.apellido1}" title="Apellido1" required="true" requiredMessage="El campo Aplellido1 es obligatorio."/>
                             <h:outputLabel value="Apellido2:" for="apellido2" />
-                            <h:inputText id="apellido2" value="#{managedBeanUsuarios.u.apellido2}" title="Apellido2"/>
-                            <p:outputLabel value="Nivel Acceso:" />
+                            <h:inputText id="apellido2" value="#{managedBeanUsuarios.u.apellido2}" title="Apellido2" />
+                            <h:outputLabel value="Nivel Acceso:" for="nivel" />
                             <p:selectOneMenu id="nivel" value="#{managedBeanUsuarios.permiso}">
                                 <f:selectItem itemLabel="Select One" itemValue="" />
                                 <f:selectItems value="#{managedBeanNivelAcceso.seleccionarItem()}" />
                             </p:selectOneMenu>
-                            <h:commandButton value="Guardar" action="#{managedBeanUsuarios.add()}"></h:commandButton>
+                            <h:commandButton value="Guardar" action="#{managedBeanUsuarios.edit()}"></h:commandButton>
                         </h:panelGrid>
                     </h:form>
                 </f:view>

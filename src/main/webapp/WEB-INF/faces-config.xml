@@ -37,11 +37,15 @@
     <navigation-rule>
         <from-view-id>/vistas/usuario.xhtml</from-view-id>
         <navigation-case>
-            <from-action></from-action>
             <from-outcome>add</from-outcome>
             <to-view-id>/vistas/addusuario.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editusuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/vistas/addusuario.xhtml</from-view-id>
@@ -52,7 +56,176 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-    
+    <navigation-rule>
+        <from-view-id>/vistas/editusuario.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanUsuarios.edit()}</from-action>
+            <from-outcome>usuario</from-outcome>
+            <to-view-id>/vistas/usuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+<!--Entidades-->   
+    <navigation-rule>
+        <from-view-id>/vistas/entidades.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/vistas/addentidades.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editentidades.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/addentidades.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanEntidad.add()}</from-action>
+            <from-outcome>entidad</from-outcome>
+            <to-view-id>/vistas/entidades.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>    
+    <navigation-rule>
+        <from-view-id>/vistas/editentidades.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanEntidad.edit()}</from-action>
+            <from-outcome>entidad</from-outcome>
+            <to-view-id>/vistas/entidades.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+<!--Departamento-->   
+    <navigation-rule>
+        <from-view-id>/vistas/departamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/vistas/adddepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editdepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/adddepartamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanDepartamento.add()}</from-action>
+            <from-outcome>departamento</from-outcome>
+            <to-view-id>/vistas/departamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>    
+    <navigation-rule>
+        <from-view-id>/vistas/editdepartamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanDepartamento.edit()}</from-action>
+            <from-outcome>departamento</from-outcome>
+            <to-view-id>/vistas/departamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+ <!--Ficheros-->   
+    <navigation-rule>
+        <from-view-id>/vistas/ficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/vistas/addficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/addficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanFicheros.add()}</from-action>
+            <from-outcome>ficheros</from-outcome>
+            <to-view-id>/vistas/ficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>    
+    <navigation-rule>
+        <from-view-id>/vistas/editficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanFicheros.edit()}</from-action>
+            <from-outcome>ficheros</from-outcome>
+            <to-view-id>/vistas/ficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+     <!--Version-->   
+    <navigation-rule>
+        <from-view-id>/vistas/versiones.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/vistas/addversiones.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editversiones.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/addversiones.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanVersion.add()}</from-action>
+            <from-outcome>version</from-outcome>
+            <to-view-id>/vistas/versiones.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>    
+    <navigation-rule>
+        <from-view-id>/vistas/editversiones.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanVersion.edit()}</from-action>
+            <from-outcome>version</from-outcome>
+            <to-view-id>/vistas/versiones.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+     <!--Versionfichero-->   
+    <navigation-rule>
+        <from-view-id>/vistas/mantficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/vistas/addmantficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editmantficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/addmantficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanVersionFichero.add()}</from-action>
+            <from-outcome>versionfichero</from-outcome>
+            <to-view-id>/vistas/mantficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>    
+    <navigation-rule>
+        <from-view-id>/vistas/editmantficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanVersionFichero.edit()}</from-action>
+            <from-outcome>versionfichero</from-outcome>
+            <to-view-id>/vistas/mantficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+<!--Managed beans-->   
     <managed-bean>
         <managed-bean-name>managedBeanLoginUsuarios</managed-bean-name>
         <managed-bean-class>managedbeans.ManagedBeanLoginUsuarios</managed-bean-class>
