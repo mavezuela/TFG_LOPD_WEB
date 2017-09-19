@@ -12,6 +12,9 @@
 
             <ui:define name="content">
                 <h:form>
+                    <h:form>
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    </h:form>
                     <p:dataTable var="verfic" value="#{managedBeanVersionFichero.findAll()}" widgetVar="verficTable" 
                                  emptyMessage="No hay ficheros con los criterios de busqueda" filteredValue="#{managedBeanVersionFichero.filteredVerFic}"
                                  paginator="true" rows="10">
@@ -48,9 +51,9 @@
                             <f:facet name="header">Opciones</f:facet>
                             <h:commandLink value="Borrar" action="#{managedBeanVersionFichero.delete(verfic)}" onclick="return confirm('¿Quiere borrar el registro?')"></h:commandLink> |
                             <h:commandLink value="Editar" action="#{managedBeanVersionFichero.edit(verfic)}" ></h:commandLink> |
-                            <h:commandLink value="Preparar" action="#{managedBeanCatpreguntas.preparar(verfic)}" ></h:commandLink>
+                            <h:commandLink value="Preparar" action="#{managedBeanCatpreguntas.preparar(verfic)}" disabled="false"></h:commandLink>
                         </p:column>
-                        
+
                     </p:dataTable>
                     <br /><br />
                     <p:button outcome="add" value="Añadir"></p:button>                
