@@ -12,6 +12,8 @@
 
             <ui:define name="content">
                 <h:form>
+                    <h1><h:outputText value="Gestion de versiones"/></h1>
+
                     <p:dataTable var="ver" value="#{managedBeanVersion.findAll()}" widgetVar="verTable" 
                                  emptyMessage="No hay entidades con los criterios de busqueda" filteredValue="#{managedBeanVersion.filteredVer}"
                                  paginator="true" rows="10">

@@ -65,7 +65,7 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-<!--Entidades-->   
+    <!--Entidades-->   
     <navigation-rule>
         <from-view-id>/vistas/entidades.xhtml</from-view-id>
         <navigation-case>
@@ -97,19 +97,54 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-<!--Departamento-->   
+    <!--Planificar Proyectos-->
+    <navigation-rule>
+        <from-view-id>/vistas/planifproyecto.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanEntidad.planificar()}</from-action>            
+            <from-outcome>departamentogest</from-outcome>
+            <to-view-id>/vistas/gestiondepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>               
+    </navigation-rule>       
+     
+    <!--Gestion Entidades-->   
+    <navigation-rule>
+        <from-view-id>/vistas/gestionentidades.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editgestentidades.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>departamentos</from-outcome>
+            <to-view-id>/vistas/gestiondepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>               
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/editgestentidades.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanEntidad.editgest()}</from-action>
+            <from-outcome>entidadgest</from-outcome>
+            <to-view-id>/vistas/gestionentidades.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+  
+    <!--Departamento-->   
     <navigation-rule>
         <from-view-id>/vistas/departamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editdepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>         
         <navigation-case>
             <from-outcome>add</from-outcome>
             <to-view-id>/vistas/adddepartamento.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
-        <navigation-case>
-            <from-outcome>edit</from-outcome>
-            <to-view-id>/vistas/editdepartamento.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>        
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/vistas/adddepartamento.xhtml</from-view-id>
@@ -129,7 +164,50 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
- <!--Ficheros-->   
+    <!--Gestion Departamento-->   
+    <navigation-rule>
+        <from-view-id>/vistas/gestiondepartamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/vistas/addgestdepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editgestdepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>ficheros</from-outcome>
+            <to-view-id>/vistas/gestionficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>volver</from-outcome>
+            <to-view-id>/vistas/gestionentidades.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>                        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/addgestdepartamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanDepartamento.addgest()}</from-action>
+            <from-outcome>departamentogest</from-outcome>
+            <to-view-id>/vistas/gestiondepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>    
+    <navigation-rule>
+        <from-view-id>/vistas/editgestdepartamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanDepartamento.editgest()}</from-action>
+            <from-outcome>departamentogest</from-outcome>
+            <to-view-id>/vistas/gestiondepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>       
+    
+    <!--Ficheros-->   
     <navigation-rule>
         <from-view-id>/vistas/ficheros.xhtml</from-view-id>
         <navigation-case>
@@ -161,7 +239,45 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-     <!--Version-->   
+    <!--Gestion Ficheros-->   
+    <navigation-rule>
+        <from-view-id>/vistas/gestionficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/vistas/addgestficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/vistas/editgestficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>volver</from-outcome>
+            <to-view-id>/vistas/gestiondepartamento.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>                        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/addgestficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanFicheros.addgest()}</from-action>
+            <from-outcome>ficherosgest</from-outcome>
+            <to-view-id>/vistas/gestionficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/editgestficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanFicheros.editgest()}</from-action>
+            <from-outcome>ficherosgest</from-outcome>
+            <to-view-id>/vistas/gestionficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>   
+    
+    <!--Version-->   
     <navigation-rule>
         <from-view-id>/vistas/versiones.xhtml</from-view-id>
         <navigation-case>
@@ -193,7 +309,7 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-     <!--Versionfichero-->   
+    <!--Versionfichero-->   
     <navigation-rule>
         <from-view-id>/vistas/mantficheros.xhtml</from-view-id>
         <navigation-case>
@@ -225,7 +341,57 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-<!--Managed beans-->   
+    <!--estficheros-->
+    <navigation-rule>
+        <from-view-id>/vistas/estficheros.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{managedBeanCatpreguntas.cumplimiento()}</from-action>           
+            <from-outcome>estadisticafic</from-outcome>
+            <to-view-id>/vistas/estadisticafic.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>      
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vistas/estadisticafic.xhtml</from-view-id>
+        <navigation-case>    
+            <from-outcome>volver</from-outcome>
+            <to-view-id>/vistas/estficheros.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>      
+    </navigation-rule>
+    <!--Recoger Datos-->
+    <navigation-rule>
+        <from-view-id>/vistas/recogidadatos.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>categorias</from-outcome>
+            <to-view-id>/vistas/recogidacat.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>      
+    </navigation-rule>
+    <!--Recoger Categorias-->
+    <navigation-rule>
+        <from-view-id>/vistas/recogidacat.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>preguntas</from-outcome>
+            <to-view-id>/vistas/recogidapreg.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>volver</from-outcome>
+            <to-view-id>/vistas/recogidadatos.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>              
+    </navigation-rule>
+    <!--Recoger Categorias-->
+    <navigation-rule>
+        <from-view-id>/vistas/recogidapreg.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>volver</from-outcome>
+            <to-view-id>/vistas/recogidacat.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>              
+    </navigation-rule>                 
+    <!--Managed beans-->   
     <managed-bean>
         <managed-bean-name>managedBeanLoginUsuarios</managed-bean-name>
         <managed-bean-class>managedbeans.ManagedBeanLoginUsuarios</managed-bean-class>

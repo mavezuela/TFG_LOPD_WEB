@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Añadir Proyecto"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Nombre:" for="nombre" />
+                            <h:inputText id="nombre" value="#{managedBeanEntidad.e.nombre}" title="Nombre" required="true" requiredMessage="El campo Nombre es Requerido."/>
+                            <h:outputLabel value="Descripción:" for="descripcion" />
+                            <h:inputText id="descripcion" value="#{managedBeanEntidad.e.descripcion}" title="Descripcion" required="true" requiredMessage="La campo Descripcion es requeridad."/>
+                            <h:commandButton value="Guardar" action="#{managedBeanEntidad.planificar()}"></h:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

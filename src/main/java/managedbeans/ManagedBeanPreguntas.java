@@ -5,7 +5,10 @@
  */
 package managedbeans;
 
+import entities.Catpreguntas;
+import entities.Preguntas;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -21,9 +24,10 @@ public class ManagedBeanPreguntas implements Serializable{
     private int idpreguntas;
     private String pregunta;
     private double porcentaje;
-    private double cumplimiento;
+    private double cumplimiento;  
 
-
+    private List<Preguntas> filteredPreg;
+    
     public ManagedBeanPreguntas() {
     }
 
@@ -58,5 +62,28 @@ public class ManagedBeanPreguntas implements Serializable{
     public void setCumplimiento(double cumplimiento) {
         this.cumplimiento = cumplimiento;
     }
+
+    public List<Preguntas> getFilteredPreg() {
+        return filteredPreg;
+    }
+
+    public void setFilteredPreg(List<Preguntas> filteredPreg) {
+        this.filteredPreg = filteredPreg;
+    }
+
+    public List<Preguntas> findAll() {
+        return this.preguntasFacade.findAll();
+    }
     
+    public List<Preguntas> recogerpreg(int idcatpreguntas){
+        Catpreguntas cp = new Catpreguntas(idcatpreguntas);
+        List<Preguntas> preg = preguntasFacade.findByIdcatpreguntas(cp);
+        return preg;
+    }
+
+    
+    public void edit(Preguntas p) {
+        preguntasFacade.edit(p);
+     }
+
 }

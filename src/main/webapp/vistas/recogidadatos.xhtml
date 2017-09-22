@@ -15,9 +15,9 @@
                     <h:form>
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                     </h:form>
-                    <h1><h:outputText value="Mantenimiento de ficheros"/></h1>
+                    <h1><h:outputText value="Recogida de Datos"/></h1>
                     
-                    <p:dataTable var="verfic" value="#{managedBeanVersionFichero.findAll()}" widgetVar="verficTable" 
+                    <p:dataTable var="vfrec" value="#{managedBeanVersionFichero.findAll()}" widgetVar="verficTable" 
                                  emptyMessage="No hay ficheros con los criterios de busqueda" filteredValue="#{managedBeanVersionFichero.filteredVerFic}"
                                  paginator="true" rows="10">
 
@@ -28,37 +28,33 @@
                             </p:outputPanel>
                         </f:facet>
 
-                        <p:column filterBy="#{verfic.ficheros.nombre}"  headerText="fichero" filterMatchMode="contains">
+                        <p:column filterBy="#{vfrec.ficheros.nombre}"  headerText="fichero" filterMatchMode="contains">
                             <f:facet name="header">Fichero</f:facet>
-                            <h:outputText value="#{verfic.ficheros.nombre}" />
+                            <h:outputText value="#{vfrec.ficheros.nombre}" />
                         </p:column>
 
-                        <p:column filterBy="#{verfic.version1.version}"  headerText="version" filterMatchMode="contains">
+                        <p:column filterBy="#{vfrec.version1.version}"  headerText="version" filterMatchMode="contains">
                             <f:facet name="header">Version</f:facet>
-                            <h:outputText value="#{verfic.version1.version}" />
+                            <h:outputText value="#{vfrec.version1.version}" />
                         </p:column>
 
-                        <p:column filterBy="#{verfic.version}"  headerText="versionado" filterMatchMode="contains">
+                        <p:column filterBy="#{vfrec.version}"  headerText="versionado" filterMatchMode="contains">
                             <f:facet name="header">Versionado</f:facet>
-                            <h:outputText value="#{verfic.version}" />
+                            <h:outputText value="#{vfrec.version}" />
                         </p:column>
 
-                        <p:column filterBy="#{verfic.descripcion}"  headerText="apellido1" filterMatchMode="contains">
+                        <p:column filterBy="#{vfrec.descripcion}"  headerText="descripcion" filterMatchMode="contains">
                             <f:facet name="header">Descripción</f:facet>
-                            <h:outputText value="#{verfic.descripcion}" />
+                            <h:outputText value="#{vfrec.descripcion}" />
                         </p:column>
 
 
                         <p:column>
                             <f:facet name="header">Opciones</f:facet>
-                            <h:commandLink value="Borrar" action="#{managedBeanVersionFichero.delete(verfic)}" onclick="return confirm('¿Quiere borrar el registro?')"></h:commandLink> |
-                            <h:commandLink value="Editar" action="#{managedBeanVersionFichero.edit(verfic)}" ></h:commandLink> |
-                            <h:commandLink value="Preparar" action="#{managedBeanCatpreguntas.preparar(verfic)}" disabled="false"></h:commandLink>
+                            <h:commandLink value="Recoger Datos" action="#{managedBeanCatpreguntas.recogerdatos(vfrec)}"></h:commandLink>
                         </p:column>
 
-                    </p:dataTable>
-                    <br /><br />
-                    <p:button outcome="add" value="Añadir"></p:button>                
+                    </p:dataTable>                         
                 </h:form>
             </ui:define>
 

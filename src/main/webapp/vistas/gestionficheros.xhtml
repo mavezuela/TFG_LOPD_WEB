@@ -13,8 +13,11 @@
             <ui:define name="content">
                 <h:form>
                     <h1><h:outputText value="Gestion de ficheros"/></h1>
+                    <br /><br />                    
+                    <p:button outcome="volver" value="Volver"></p:button> 
+                    <br /><br />  
                     
-                    <p:dataTable var="fic" value="#{managedBeanFicheros.findAll()}" widgetVar="ficTable" 
+                    <p:dataTable var="fic" value="#{managedBeanFicheros.ficheros(managedBeanDepartamento.iddepactual)}" widgetVar="ficTable" 
                                  emptyMessage="No hay ficheros con los criterios de busqueda" filteredValue="#{managedBeanFicheros.filteredFic}"
                                  paginator="true" rows="10">
 
@@ -49,7 +52,7 @@
                         <p:column>
                             <f:facet name="header">Opciones</f:facet>
                             <h:commandLink value="Borrar" action="#{managedBeanFicheros.delete(fic)}" onclick="return confirm('¿Quiere borrar el registro?')"></h:commandLink> |
-                            <h:commandLink value="Editar" action="#{managedBeanFicheros.edit(fic)}" ></h:commandLink>
+                            <h:commandLink value="Editar" action="#{managedBeanFicheros.editgest(fic)}" ></h:commandLink>
                         </p:column>
                         
                     </p:dataTable>

@@ -21,11 +21,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 import sessionbeans.CatpreguntasFacadeLocal;
-import sessionbeans.CatpregversionFacade;
 import sessionbeans.CatpregversionFacadeLocal;
 import sessionbeans.PreguntasFacadeLocal;
-import sessionbeans.PreguntasversionFacade;
 import sessionbeans.PreguntasversionFacadeLocal;
 
 @Named(value = "managedBeanCatpreguntas")
@@ -48,12 +50,17 @@ public class ManagedBeanCatpreguntas implements Serializable {
     private String categoria;
     private String descripcion;
     private double porcentaje;
+    
+    private int idcpactual;
     private int cont;
     private int contpreg;
+    private BarChartModel barModel;
 
     private Catpreguntas cp = new Catpreguntas();
 
     private Preguntas p = new Preguntas();
+    
+    private List<Catpreguntas> filteredCat;
 
     public Catpreguntas getCp() {
         return cp;
@@ -106,6 +113,38 @@ public class ManagedBeanCatpreguntas implements Serializable {
         this.porcentaje = porcentaje;
     }
 
+    public int getIdcpactual() {
+        return idcpactual;
+    }
+
+    public void setIdcpactual(int idcpactual) {
+        this.idcpactual = idcpactual;
+    }
+
+    public List<Catpreguntas> getFilteredCat() {
+        return filteredCat;
+    }
+
+    public void setFilteredCat(List<Catpreguntas> filteredCat) {
+        this.filteredCat = filteredCat;
+    }
+
+    public List<Catpreguntas> findAll() {
+        return this.catpreguntasFacade.findAll();
+    }
+    
+    public BarChartModel getBarModel() {
+        return barModel;
+    }
+
+    public void setBarModel(BarChartModel barModel) {
+        this.barModel = barModel;
+    }
+    
+    public String recogerdatos(Versionfichero vfrec){                
+        return "categorias";
+    }
+    
     public void preparar(Versionfichero vfprep) {
 
         try {
@@ -172,6 +211,45 @@ public class ManagedBeanCatpreguntas implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Error en Preparación"));
         }
+    }
+
+    public String cumplimiento(Versionfichero verfic) {
+       
+        BarChartModel model = new BarChartModel();
+
+        List<Catpreguntas> cpreg = catpreguntasFacade.findAll();
+        for (int i = 0; i <= cpreg.size() - 1; i++) {
+            if (verfic.getVersion1().getIdversion() == cpreg.get(i).getVersionfichero().getVersion1().getIdversion() && verfic.getFicheros().getIdfichero() == cpreg.get(i).getVersionfichero().getFicheros().getIdfichero()){
+            ChartSeries categoria = new ChartSeries();
+            categoria.setLabel(cpreg.get(i).getCategoria());
+            categoria.set(cpreg.get(i).getCategoria(), cpreg.get(i).getPorcentaje());
+            model.addSeries(categoria);
+            }
+        }
+
+        barModel = model;
+
+        barModel.setTitle("Ficheros");
+        barModel.setLegendPosition("ne");
+        
+        barModel.setBarWidth(50);
+
+        Axis xAxis = barModel.getAxis(AxisType.X);
+        xAxis.setLabel("Fichero");
+
+        Axis yAxis = barModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Cumplimiento");
+        yAxis.setMin(0);
+        yAxis.setMax(100);
+        
+        return "estadisticafic";
+               
+    }
+    
+
+    public String irPreguntas(Catpreguntas cp) {
+        idcpactual = cp.getIdcatpreguntas();
+        return "preguntas";
     }
 
 }

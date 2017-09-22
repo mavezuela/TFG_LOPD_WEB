@@ -10,12 +10,11 @@ import entities.Ficheros;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import org.primefaces.model.chart.BarChartModel;
 import sessionbeans.FicherosFacadeLocal;
 
 @Named(value = "managedBeanFicheros")
@@ -35,6 +34,7 @@ public class ManagedBeanFicheros implements Serializable {
     private List<Ficheros> listaFicheros;
     private List<SelectItem> itemsFicheros;
 
+    private BarChartModel barModel;
 
     public ManagedBeanFicheros() {
     }
@@ -107,6 +107,14 @@ public class ManagedBeanFicheros implements Serializable {
         this.itemsFicheros = itemsFicheros;
     }
 
+    public BarChartModel getBarModel() {
+        return barModel;
+    }
+
+    public void setBarModel(BarChartModel barModel) {
+        this.barModel = barModel;
+    }
+
     public String add() {
         Departamento dep = new Departamento(iddep);
         this.f.setIddepartamento(dep);
@@ -115,12 +123,25 @@ public class ManagedBeanFicheros implements Serializable {
         return "ficheros";
     }
 
+    public String addgest() {
+        Departamento dep = new Departamento(iddep);
+        this.f.setIddepartamento(dep);
+        this.ficherosFacade.create(this.f);
+        this.f = new Ficheros();
+        return "ficherosgest";
+    }
+
     public void delete(Ficheros f) {
         this.ficherosFacade.remove(f);
         this.ficherosFacade.findAll();
     }
 
     public String edit(Ficheros f) {
+        this.f = f;
+        return "edit";
+    }
+
+    public String editgest(Ficheros f) {
         this.f = f;
         return "edit";
     }
@@ -134,12 +155,27 @@ public class ManagedBeanFicheros implements Serializable {
         return "ficheros";
     }
 
-        public List<SelectItem> seleccionarItem() {
+    public String editgest() {
+        Departamento dep = new Departamento(iddep);
+        this.f.setIddepartamento(dep);
+        this.ficherosFacade.edit(this.f);
+        this.ficherosFacade.findAll();
+        this.f = new Ficheros();
+        return "ficherosgest";
+    }
+
+    public List<Ficheros> ficheros(int iddepartamento) {
+        Departamento de = new Departamento(iddepartamento);
+        List<Ficheros> dep = ficherosFacade.findByIddepartamento(de);
+        return dep;
+    }
+
+    public List<SelectItem> seleccionarItem() {
         listaFicheros = ficherosFacade.findAll();
 
         this.itemsFicheros = new ArrayList<SelectItem>();
         for (int i = 0; i <= listaFicheros.size() - 1; i++) {
-            SelectItem ficherosItem = new SelectItem(listaFicheros.get(i).getIdfichero(),listaFicheros.get(i).getNombre());
+            SelectItem ficherosItem = new SelectItem(listaFicheros.get(i).getIdfichero(), listaFicheros.get(i).getNombre());
             this.itemsFicheros.add(ficherosItem);
         }
         return itemsFicheros;

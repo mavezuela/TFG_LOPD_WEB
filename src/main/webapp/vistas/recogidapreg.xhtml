@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h1><h:outputText value="Preguntas Fichero"/></h1>
+                    <br /><br />                    
+                    <p:button outcome="volver" value="Volver"></p:button> 
+                    <br /><br />   
+
+                    <p:dataTable var="preg" value="#{managedBeanPreguntas.recogerpreg(managedBeanCatpreguntas.idcpactual)}" widgetVar="pregTable" 
+                                 emptyMessage="No hay entidades con los criterios de busqueda" filteredValue="#{managedBeanPreguntas.filteredPreg}"
+                                 paginator="true" rows="10" editable="true">
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Filtrar por todos los campos:" />
+                                <p:inputText id="globalFilter" onkeyup="PF('pregTable').filter()" style="width:150px" placeholder="Introduzca la clave"/>
+                            </p:outputPanel>
+                        </f:facet>
+
+                        <p:column style="width:32px">
+                            <p:rowEditor />
+                        </p:column>
+
+                        <p:column filterBy="#{preg.pregunta}"  headerText="pregunta" filterMatchMode="contains">
+                            <f:facet name="header">Pregunta</f:facet>
+                            <h:outputText value="#{preg.pregunta}" />
+                        </p:column>
+
+                        <p:column filterBy="#{preg.porcentaje}"  headerText="porcentaje" filterMatchMode="contains">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{preg.porcentaje}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputNumber value="#{preg.porcentaje}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column filterBy="#{preg.cumplimiento}"  headerText="cumplimiento" filterMatchMode="contains">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{preg.cumplimiento}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputNumber value="#{preg.cumplimiento}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        
+                        <p:ajax event="rowEdit" listener="#{managedBeanPreguntas.edit(preg)}" />
+
+                    </p:dataTable>    
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

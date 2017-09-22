@@ -27,7 +27,7 @@ public class ManagedBeanDepartamento implements Serializable {
     private Departamento d = new Departamento();
 
     private List<Departamento> filteredDep;
-    
+
     private List<Departamento> listaDepartamento;
     private List<SelectItem> itemsDepartamento;
 
@@ -38,11 +38,13 @@ public class ManagedBeanDepartamento implements Serializable {
     public void setItemsDepartamento(List<SelectItem> itemsDepartamento) {
         this.itemsDepartamento = itemsDepartamento;
     }
-    
+
     private int iddepartamento;
     private int ident;
     private String nombre;
     private String descripcion;
+    
+    private int iddepactual;
 
     public ManagedBeanDepartamento() {
     }
@@ -99,12 +101,28 @@ public class ManagedBeanDepartamento implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public int getIddepactual() {
+        return iddepactual;
+    }
+
+    public void setIddepactual(int iddepactual) {
+        this.iddepactual = iddepactual;
+    }
+
     public String add() {
         Entidad ent = new Entidad(ident);
         this.d.setIdentidad(ent);
         this.departamentoFacade.create(this.d);
         this.d = new Departamento();
         return "departamento";
+    }
+
+    public String addgest() {
+        Entidad ent = new Entidad(ident);
+        this.d.setIdentidad(ent);
+        this.departamentoFacade.create(this.d);
+        this.d = new Departamento();
+        return "departamentogest";
     }
 
     public void delete(Departamento d) {
@@ -117,6 +135,11 @@ public class ManagedBeanDepartamento implements Serializable {
         return "edit";
     }
 
+    public String editgest(Departamento d) {
+        this.d = d;
+        return "edit";
+    }
+
     public String edit() {
         Entidad ent = new Entidad(ident);
         this.d.setIdentidad(ent);
@@ -125,15 +148,35 @@ public class ManagedBeanDepartamento implements Serializable {
         this.d = new Departamento();
         return "departamento";
     }
-    
+
+    public String editgest() {
+        Entidad ent = new Entidad(ident);
+        this.d.setIdentidad(ent);
+        this.departamentoFacade.edit(this.d);
+        this.departamentoFacade.findAll();
+        this.d = new Departamento();
+        return "departamentogest";
+    }
+
     public List<SelectItem> seleccionarItem() {
         listaDepartamento = departamentoFacade.findAll();
 
         this.itemsDepartamento = new ArrayList<SelectItem>();
         for (int i = 0; i <= listaDepartamento.size() - 1; i++) {
-            SelectItem departamentoItem = new SelectItem(listaDepartamento.get(i).getIddepartamento(),listaDepartamento.get(i).getDescripcion());
+            SelectItem departamentoItem = new SelectItem(listaDepartamento.get(i).getIddepartamento(), listaDepartamento.get(i).getDescripcion());
             this.itemsDepartamento.add(departamentoItem);
         }
         return itemsDepartamento;
-    }    
+    }
+
+    public List<Departamento> departamentos(int identidad) {
+        Entidad en = new Entidad(identidad);
+        List<Departamento> dep = departamentoFacade.findByIdentidad(en);
+        return dep;
+    }
+    
+    public String irFicheros(Departamento de){
+        iddepactual = de.getIddepartamento();
+        return "ficheros";
+    }
 }

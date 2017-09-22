@@ -12,7 +12,7 @@
 
             <ui:define name="content">
                 <h:form>
-                    <h1><h:outputText value="Gestion de entidades"/></h1>
+                    <h1><h:outputText value="Gestion de Proyectos Entidades"/></h1>
                     
                     <p:dataTable var="ent" value="#{managedBeanEntidad.findAll()}" widgetVar="entTable" 
                                  emptyMessage="No hay entidades con los criterios de busqueda" filteredValue="#{managedBeanEntidad.filteredEnt}"
@@ -42,13 +42,11 @@
 
                         <p:column>
                             <f:facet name="header">Opciones</f:facet>
-                            <h:commandLink value="Borrar" action="#{managedBeanEntidad.delete(ent)}" onclick="return confirm('¿Quiere borrar el registro?')"></h:commandLink> |
-                            <h:commandLink value="Editar" action="#{managedBeanEntidad.edit(ent)}" ></h:commandLink>
+                            <h:commandLink value="Departamentos"  action="#{managedBeanEntidad.irDepartamentos(ent)}" ></h:commandLink> |
+                            <h:commandLink value="Editar" action="#{managedBeanEntidad.editgest(ent)}" ></h:commandLink>
                         </p:column>
                         
-                    </p:dataTable>
-                    <br /><br />
-                    <p:button outcome="add" value="Añadir"></p:button>                
+                    </p:dataTable>             
                 </h:form>
             </ui:define>
 
